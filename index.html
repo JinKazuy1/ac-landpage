@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AC Consultoria & Instituto Phoenix | Desenvolvimento Humano e Corporativo</title>
+    <meta
+      name="description"
+      content="Landing page oficial da AC Consultoria & Instituto Phoenix. Desenvolvimento humano, liderança, inteligência emocional e alta performance para pessoas e organizações."
+    />
+    <meta
+      name="keywords"
+      content="AC Consultoria, Instituto Phoenix, desenvolvimento humano, liderança, soft skills, consultoria corporativa, inteligência emocional"
+    />
+    <meta name="theme-color" content="#06142d" />
+    <link rel="canonical" href="https://acconsultoria.com.br/" />
+    <meta property="og:title" content="AC Consultoria & Instituto Phoenix" />
+    <meta
+      property="og:description"
+      content="Há mais de 20 anos desenvolvendo pessoas e transformando organizações."
+    />
+    <meta property="og:type" content="website" />
+    <style>
+      :root {
+        --bg: #040a18;
+        --bg-alt: #08152e;
+        --surface: #0d1f42;
+        --surface-soft: #0f2958;
+        --text: #f5f9ff;
+        --muted: #bac9e6;
+        --accent: #00c9f2;
+        --accent-strong: #08e0ff;
+        --border: rgba(255, 255, 255, 0.14);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        background: linear-gradient(180deg, var(--bg), #020611);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .container {
+        width: min(1120px, 92%);
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      .tag {
+        display: inline-block;
+        color: var(--accent);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+
+      h1, h2, h3 { line-height: 1.2; margin-top: 0; }
+      h1 { font-size: clamp(1.9rem, 4vw, 3.4rem); margin-bottom: 1rem; }
+      h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); margin-bottom: 0.9rem; }
+      p { margin-top: 0; color: var(--muted); }
+
+      .hero {
+        padding: 5rem 0 4rem;
+        background:
+          radial-gradient(circle at top right, rgba(0, 201, 242, 0.2), transparent 40%),
+          linear-gradient(180deg, #071636, #040a18 60%);
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .benefits {
+        list-style: none;
+        padding: 0;
+        margin: 1.4rem 0;
+      }
+
+      .benefits li {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+        margin-bottom: 0.8rem;
+      }
+
+      .check {
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1.4rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0.82rem 1.3rem;
+        font-weight: 700;
+        transition: 0.25s ease;
+        border: 1px solid transparent;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #031227;
+        box-shadow: 0 10px 30px rgba(0, 201, 242, 0.35);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        background: var(--accent-strong);
+      }
+
+      .btn-secondary {
+        border-color: var(--accent);
+        color: var(--text);
+        background: transparent;
+      }
+
+      .panel {
+        background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .logo-grid {
+        margin-top: 1.4rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+
+      .logo {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px dashed rgba(255, 255, 255, 0.25);
+        border-radius: 12px;
+        min-height: 62px;
+        display: grid;
+        place-items: center;
+        color: #d0dbf2;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      .three-col,
+      .two-col {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.2rem;
+      }
+
+      blockquote {
+        margin: 1rem 0 0;
+        padding: 1rem 1rem 1rem 1.2rem;
+        border-left: 3px solid var(--accent);
+        background: rgba(0, 201, 242, 0.08);
+        border-radius: 0 12px 12px 0;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .founder {
+        display: grid;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .founder-photo {
+        width: 100%;
+        aspect-ratio: 4/5;
+        border-radius: 18px;
+        object-fit: cover;
+        border: 1px solid var(--border);
+        background: linear-gradient(140deg, #20396a, #092046);
+      }
+
+      .list-check {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.6rem;
+      }
+
+      .list-check li::before {
+        content: "✔";
+        color: var(--accent);
+        margin-right: 0.55rem;
+      }
+
+      .testimonials {
+        position: relative;
+      }
+
+      .slider {
+        display: grid;
+        grid-template-columns: repeat(4, 100%);
+        overflow: hidden;
+        border-radius: 16px;
+      }
+
+      .slide {
+        padding: 1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+      }
+
+      details {
+        margin-top: 0.65rem;
+      }
+
+      summary {
+        cursor: pointer;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .slider-controls {
+        margin-top: 1rem;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .dot {
+        width: 11px;
+        height: 11px;
+        border: 0;
+        border-radius: 50%;
+        background: #4f6288;
+        cursor: pointer;
+      }
+
+      .dot.active { background: var(--accent); }
+
+      .split {
+        display: grid;
+        gap: 1rem;
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem 0;
+        text-align: center;
+        color: #c7d3ef;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (min-width: 760px) {
+        .hero-grid { grid-template-columns: 1.25fr 1fr; align-items: center; }
+        .logo-grid { grid-template-columns: repeat(3, 1fr); }
+        .three-col { grid-template-columns: repeat(3, 1fr); }
+        .two-col { grid-template-columns: repeat(2, 1fr); }
+        .founder { grid-template-columns: 0.85fr 1.15fr; }
+        .split { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container hero-grid reveal">
+        <article>
+          <span class="tag">AC Consultoria & Instituto Phoenix</span>
+          <h1>Desenvolvemos pessoas e transformamos organizações.</h1>
+          <p>
+            Há mais de duas décadas "Preparando empresas & Organizações para os Novos Desafios"
+          </p>
+          <ul class="benefits">
+            <li><span class="check">✔</span><span>Temos soluções, recursos e ferramentas para o desenvolvimento humano, pessoal, profissional para as organizações e a vida.</span></li>
+            <li><span class="check">✔</span><span>Leve nossos treinamentos para sua empresa!</span></li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://wa.me/5511947574348" target="_blank" rel="noopener noreferrer">Fale com um especialista</a>
+          </div>
+        </article>
+        <aside class="panel">
+          <h2>Impacto com método e resultado</h2>
+          <p>
+            Programas orientados para transformação comportamental, fortalecimento da liderança e cultura de alta performance.
+          </p>
+          <div class="logo-grid" aria-label="Empresas atendidas pela consultoria">
+            <div class="logo">Logo Empresa 1</div>
+            <div class="logo">Logo Empresa 2</div>
+            <div class="logo">Logo Empresa 3</div>
+            <div class="logo">Logo Empresa 4</div>
+            <div class="logo">Logo Empresa 5</div>
+            <div class="logo">Logo Empresa 6</div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <main>
+      <section class="section reveal" aria-labelledby="autoridade">
+        <div class="container">
+          <h2 id="autoridade" style="text-align:center;">Mais de 20 anos impactando “pessoas e organizações”.</h2>
+          <p style="text-align:center; max-width:800px; margin:0 auto;">Somos especialistas em desenvolver pessoas para alcançarem resultados reais e sustentáveis.</p>
+          <p style="text-align:center; margin-top:1rem;">Algumas das empresas e profissionais que já confiaram em nosso trabalho.</p>
+          <div class="logo-grid" style="margin-top:1.2rem;">
+            <div class="logo">Parceiro A</div><div class="logo">Parceiro B</div><div class="logo">Parceiro C</div>
+            <div class="logo">Parceiro D</div><div class="logo">Parceiro E</div><div class="logo">Parceiro F</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-labelledby="quem-somos">
+        <div class="container">
+          <h2 id="quem-somos">Especialistas em desenvolver pessoas e fortalecer organizações!</h2>
+          <p>
+            Desde o ano 2000, atuamos no desenvolvimento humano e corporativo, preparando pessoas, líderes, profissionais e equipes para lidar com os desafios cada vez mais desafiadores e complexos em nosso dia a dia! O maior capital das organizações e das famílias, são as pessoas, justamente por isso estamos conectados e atentos com as novas demandas e tendências. A liderança e inteligência emocional somada às soft skills, são a estrutura para promover transformação e alta performance! Unimos experiência de mercado, conhecimento técnico e metodologias modernas de desenvolvimento humano para gerar mudanças profundas, que se refletem diretamente na performance das pessoas, na qualidade das relações e nos resultados das organizações. Mais do que capacitar profissionais, nosso compromisso é despertar potencial, fortalecer lideranças e contribuir para a construção de ambientes mais saudáveis, conscientes e produtivos.
+          </p>
+          <blockquote>
+            “Na AC Consultoria & Instituto Phoenix, acreditamos que quando as pessoas evoluem, as organizações prosperam.”
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-labelledby="pilares">
+        <div class="container">
+          <h2 id="pilares">Nossos 3 Pilares de Desenvolvimento</h2>
+          <p>Todo o nosso trabalho é sustentado por três pilares fundamentais que orientam nossas metodologias e programas de desenvolvimento:</p>
+          <div class="three-col">
+            <article class="card">
+              <h3>Autoconhecimento e Consciência Emocional</h3>
+              <p>A base de toda evolução humana começa pelo entendimento de si mesmo. Trabalhamos o desenvolvimento da consciência emocional para que líderes e profissionais compreendam seus comportamentos, pensamentos e padrões internos, ampliando sua capacidade de tomar decisões mais conscientes e equilibradas.</p>
+            </article>
+            <article class="card">
+              <h3>Desenvolvimento de Competências Humanas</h3>
+              <p>Promovemos o fortalecimento das competências essenciais para o mundo atual, como inteligência emocional, comunicação, liderança, empatia, responsabilidade e maturidade comportamental. Estas são fundamentais para relações mais saudáveis e ambientes mais produtivos.</p>
+            </article>
+            <article class="card">
+              <h3>Alta Performance com Propósito</h3>
+              <p>Potencializamos resultados sustentáveis com foco em propósito, consistência e evolução contínua de pessoas e equipes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-labelledby="fundador">
+        <div class="container founder">
+          <img class="founder-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80" alt="Antônio Carlos - Fundador e CEO" loading="lazy" />
+          <article>
+            <h2 id="fundador">Antônio Carlos - Fundador e CEO</h2>
+            <p>Antônio Carlos é especialista em desenvolvimento humano e organizacional, com mais de duas décadas de atuação no mercado corporativo. Psicanalista clínico, treinador comportamental e consultor empresarial, dedica sua carreira a ajudar pessoas e empresas a alcançarem níveis mais elevados de consciência, performance e resultados. Ao longo de sua trajetória, já impactou centenas de profissionais e organizações através de treinamentos, consultorias e programas de desenvolvimento humano.</p>
+            <blockquote>“Onde o autoconhecimento encontra estratégia, transforma pessoas, potencializa líderes de alta performance, fortalece organizações” - AC.</blockquote>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-labelledby="solucoes">
+        <div class="container">
+          <h2 id="solucoes">As mais atuais metodologias de desenvolvimento humano</h2>
+          <p>Nosso trabalho integra diferentes áreas do conhecimento para promover transformação real.</p>
+          <div class="two-col">
+            <ul class="list-check">
+              <li>Consultoria corporativa / Pessoas – Produtos e Processos!</li>
+              <li>Desenvolvimento e formação de líderes / Leader Coach</li>
+              <li>Soft Skills aplicada na vida e nos negócios</li>
+              <li>Vendas de alto impacto / O lado comportamental das vendas</li>
+              <li>Team Building Liderança e Integração de equipe</li>
+            </ul>
+            <ul class="list-check">
+              <li>Leader training corporativo, Liderança e Inteligência Emocional</li>
+              <li>Comunicação objetiva e não violenta / Integração de equipe</li>
+              <li>Treinamento comportamental para equipes comerciais</li>
+              <li>Workshop e ou palestra customizadas para sua empresa!</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal testimonials" aria-labelledby="depoimentos">
+        <div class="container">
+          <h2 id="depoimentos">O que nossos clientes dizem sobre nós!</h2>
+          <p>“Treinamento transformador, mudou a forma como nossa equipe pensa e age.” / “Um dos melhores investimentos que já fizemos em desenvolvimento humano.”</p>
+          <div class="slider" id="testimonialSlider" aria-live="polite">
+            <article class="slide">
+              <h3>Sandra Ribeiro <small>(RH Mahle Metal Leve)</small></h3>
+              <p>“Participei dos cursos particulares do Instituto... O Líder Coaching foi simplesmente transformador.”</p>
+              <details>
+                <summary>Ler mais</summary>
+                <p>Participei dos cursos particulares do Instituto, o tema foi liderança emocional e soft skills aplicada na liderança e nos negócios, foi incrível. É impressionante como o 'AC' conduz o processo! O Líder Coaching foi simplesmente transformador. Foi o melhor investimento da minha vida!</p>
+              </details>
+            </article>
+            <article class="slide">
+              <h3>Kelly Mendes <small>(Gerente de Controladoria)</small></h3>
+              <p>“O processo foi uma imersão maravilhosa... ferramentas que vou aplicar no meu dia a dia.”</p>
+              <details>
+                <summary>Ler mais</summary>
+                <p>O processo foi uma imersão maravilhosa onde pude aprender diversas maneiras que me ajudaram a ajudar pessoas a alcançarem os melhores resultados. São inúmeras ferramentas que vou aplicar no meu dia a dia. AC é uma pessoa maravilhosa com uma experiência de vida sensacional.</p>
+              </details>
+            </article>
+            <article class="slide">
+              <h3>Sibele Dias <small>(Gerente Administrativo Financeiro)</small></h3>
+              <p>“Esse curso foi pra mim realmente um renascimento, uma nova visão de possibilidades...”</p>
+              <details>
+                <summary>Ler mais</summary>
+                <p>Eu lidero pessoas e buscava ajuda nesse sentido, e esse curso foi pra mim realmente um renascimento, uma nova visão de possibilidades e de superação. Me transformei em um ser muito mais evoluída e munida de ferramentas para lidar com quaisquer obstáculos. Recomendo esse incrível curso de olhos fechados.</p>
+              </details>
+            </article>
+            <article class="slide">
+              <h3>Wagner Ferreira <small>(Psicólogo)</small></h3>
+              <p>“O curso de liderança e inteligência emocional foi um divisor de águas em minha vida.”</p>
+              <details>
+                <summary>Ler mais</summary>
+                <p>O curso de liderança e inteligência emocional foi um divisor de águas em minha vida. Esse curso permitiu acessar esses conteúdos e modificar tudo o que me prejudicava inconscientemente. Pensando no custo-benefício, foi um dos melhores investimentos a curtíssimo prazo da minha vida, pois os resultados foram imediatos.</p>
+              </details>
+            </article>
+          </div>
+          <div class="slider-controls" aria-label="Controles do carrossel">
+            <button class="dot active" data-slide="0" aria-label="Depoimento 1"></button>
+            <button class="dot" data-slide="1" aria-label="Depoimento 2"></button>
+            <button class="dot" data-slide="2" aria-label="Depoimento 3"></button>
+            <button class="dot" data-slide="3" aria-label="Depoimento 4"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-labelledby="diferenciais">
+        <div class="container split">
+          <article class="card">
+            <h2 id="diferenciais">Por que escolher a AC Consultoria & Instituto Phoenix?</h2>
+            <ul class="list-check">
+              <li>Mais de 20 anos de experiência</li>
+              <li>Metodologias modernas e integradas</li>
+              <li>Foco em resultados reais</li>
+              <li>Equipe especialista em pessoas e desenvolvimento corporativo</li>
+              <li>Treinamentos práticos, vivenciais e transformadores</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Missão</h3>
+            <p>Desenvolver pessoas e organizações através do conhecimento, da consciência e da evolução comportamental.</p>
+            <h3>Visão</h3>
+            <p>Avançar os campos do conhecimento e se manter como referência nos processos de transformação humana, profissional e impactar positivamente o mercado corporativo.</p>
+            <h3>Valores</h3>
+            <p>Profissionalismo / Ética / Respeito / entrega com excelência / Desenvolvimento contínuo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-labelledby="cta-final">
+        <div class="container panel" style="text-align:center;">
+          <h2 id="cta-final">SUA EMPRESA ESTÁ PRONTA PARA O PRÓXIMO NÍVEL?</h2>
+          <p>Grandes resultados acontecem quando pessoas se desenvolvem. Se você deseja transformar sua equipe, fortalecer sua liderança, potencializar resultados e elevar o nível da sua empresa, fale conosco.</p>
+          <div class="actions" style="justify-content:center;">
+            <a class="btn btn-primary" href="https://wa.me/5511947574348" target="_blank" rel="noopener noreferrer">Fale conosco</a>
+            <a class="btn btn-secondary" href="https://wa.me/5511947574348" target="_blank" rel="noopener noreferrer">Inscreva-se</a>
+          </div>
+          <p style="margin-top:1rem;">WhatsApp - 11 947574348</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <small>© 2026 AC Consultoria & Instituto Phoenix. Todos os direitos reservados.</small>
+      </div>
+    </footer>
+
+    <script>
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach((el) => observer.observe(el));
+
+      const slider = document.getElementById('testimonialSlider');
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const index = Number(dot.dataset.slide);
+          slider.style.transform = `translateX(-${index * 100}%)`;
+          slider.style.transition = 'transform .55s ease';
+          dots.forEach((d) => d.classList.remove('active'));
+          dot.classList.add('active');
+        });
+      });
+    </script>
+  </body>
+</html>
