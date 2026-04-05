@@ -22,16 +22,16 @@
     <meta property="og:type" content="website" />
     <style>
       :root {
-        --bg: #f7fbff;
-        --bg-alt: #ffffff;
-        --surface: #ffffff;
-        --surface-soft: #edf5ff;
-        --text: #0d2245;
-        --muted: #486182;
-        --accent: #0c55d6;
-        --accent-strong: #00c9f2;
-        --border: rgba(12, 85, 214, 0.18);
-        --shadow: 0 14px 34px rgba(13, 34, 69, 0.12);
+        --bg: #040a18;
+        --bg-alt: #08152e;
+        --surface: #0d1f42;
+        --surface-soft: #0f2958;
+        --text: #f5f9ff;
+        --muted: #bac9e6;
+        --accent: #00c9f2;
+        --accent-strong: #08e0ff;
+        --border: rgba(255, 255, 255, 0.14);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
       }
 
       * { box-sizing: border-box; }
@@ -43,7 +43,7 @@
       body {
         margin: 0;
         font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-        background: linear-gradient(180deg, var(--bg), #eff6ff);
+        background: linear-gradient(180deg, var(--bg), #020611);
         color: var(--text);
         line-height: 1.6;
       }
@@ -73,64 +73,11 @@
       h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); margin-bottom: 0.9rem; }
       p { margin-top: 0; color: var(--muted); }
 
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .site-header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.8rem 0;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        font-weight: 800;
-      }
-
-      .logo-placeholder {
-        width: 42px;
-        height: 42px;
-        border-radius: 10px;
-        border: 2px dashed var(--accent);
-        background: var(--surface-soft);
-        display: grid;
-        place-items: center;
-        color: var(--accent);
-        font-size: 0.72rem;
-        font-weight: 700;
-      }
-
-      .site-nav {
-        display: none;
-        gap: 0.95rem;
-        align-items: center;
-      }
-
-      .site-nav a {
-        color: var(--text);
-        font-weight: 600;
-        font-size: 0.93rem;
-      }
-
-      .site-nav a:hover {
-        color: var(--accent);
-      }
-
       .hero {
-        padding: 4rem 0 3.5rem;
+        padding: 5rem 0 4rem;
         background:
-          radial-gradient(circle at top right, rgba(0, 201, 242, 0.14), transparent 40%),
-          linear-gradient(180deg, #ffffff, #f0f6ff 60%);
+          radial-gradient(circle at top right, rgba(0, 201, 242, 0.2), transparent 40%),
+          linear-gradient(180deg, #071636, #040a18 60%);
       }
 
       .hero-grid {
@@ -176,8 +123,8 @@
 
       .btn-primary {
         background: var(--accent);
-        color: #ffffff;
-        box-shadow: 0 10px 30px rgba(12, 85, 214, 0.28);
+        color: #031227;
+        box-shadow: 0 10px 30px rgba(0, 201, 242, 0.35);
       }
 
       .btn-primary:hover {
@@ -187,12 +134,12 @@
 
       .btn-secondary {
         border-color: var(--accent);
-        color: var(--accent);
-        background: #ffffff;
+        color: var(--text);
+        background: transparent;
       }
 
       .panel {
-        background: linear-gradient(170deg, #ffffff, #f7fbff);
+        background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
         border: 1px solid var(--border);
         border-radius: 18px;
         padding: 1.2rem;
@@ -207,13 +154,13 @@
       }
 
       .logo {
-        background: #ffffff;
-        border: 1px dashed rgba(12, 85, 214, 0.35);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px dashed rgba(255, 255, 255, 0.25);
         border-radius: 12px;
         min-height: 62px;
         display: grid;
         place-items: center;
-        color: #3e5e8f;
+        color: #d0dbf2;
         font-weight: 700;
         font-size: 0.85rem;
       }
@@ -308,7 +255,7 @@
         height: 11px;
         border: 0;
         border-radius: 50%;
-        background: #9bb0d3;
+        background: #4f6288;
         cursor: pointer;
       }
 
@@ -323,7 +270,7 @@
         border-top: 1px solid var(--border);
         padding: 2rem 0;
         text-align: center;
-        color: #4b668d;
+        color: #c7d3ef;
       }
 
       .reveal {
@@ -338,7 +285,6 @@
       }
 
       @media (min-width: 760px) {
-        .site-nav { display: flex; }
         .hero-grid { grid-template-columns: 1.25fr 1fr; align-items: center; }
         .logo-grid { grid-template-columns: repeat(3, 1fr); }
         .three-col { grid-template-columns: repeat(3, 1fr); }
@@ -349,22 +295,7 @@
     </style>
   </head>
   <body>
-    <header class="site-header">
-      <div class="container site-header-inner">
-        <a href="#inicio" class="brand" aria-label="Página inicial da AC Consultoria">
-          <div class="logo-placeholder" aria-hidden="true">LOGO</div>
-          <span>AC Consultoria</span>
-        </a>
-        <nav class="site-nav" aria-label="Navegação principal">
-          <a href="#quem-somos">Quem Somos</a>
-          <a href="#pilares">Pilares</a>
-          <a href="#solucoes">Soluções</a>
-          <a href="#depoimentos">Depoimentos</a>
-          <a href="#cta-final" class="btn btn-secondary">Contato</a>
-        </nav>
-      </div>
-    </header>
-    <header class="hero" id="inicio">
+    <header class="hero">
       <div class="container hero-grid reveal">
         <article>
           <span class="tag">AC Consultoria & Instituto Phoenix</span>
