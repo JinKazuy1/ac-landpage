@@ -20,6 +20,16 @@
       content="Há mais de 20 anos desenvolvendo pessoas e transformando organizações."
     />
     <meta property="og:type" content="website" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem('theme-preference');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const activeTheme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', activeTheme);
+      })();
+    </script>
     <style>
       :root {
         --bg: #f7fbff;
@@ -32,6 +42,33 @@
         --accent-strong: #00c9f2;
         --border: rgba(12, 85, 214, 0.18);
         --shadow: 0 14px 34px rgba(13, 34, 69, 0.12);
+        --header-bg: rgba(255, 255, 255, 0.95);
+        --bg-gradient-end: #eff6ff;
+        --hero-gradient-start: #ffffff;
+        --hero-gradient-end: #f0f6ff;
+        --card-gradient-start: #ffffff;
+        --card-gradient-end: #f7fbff;
+        --dot: #9bb0d3;
+      }
+
+      :root[data-theme="dark"] {
+        --bg: #08162b;
+        --bg-alt: #0c1f3a;
+        --surface: #102742;
+        --surface-soft: #153155;
+        --text: #e8f1ff;
+        --muted: #afc2dd;
+        --accent: #4ea3ff;
+        --accent-strong: #4de3ff;
+        --border: rgba(122, 175, 255, 0.3);
+        --shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+        --header-bg: rgba(8, 22, 43, 0.92);
+        --bg-gradient-end: #0b213e;
+        --hero-gradient-start: #0d2441;
+        --hero-gradient-end: #102742;
+        --card-gradient-start: #102742;
+        --card-gradient-end: #0e223d;
+        --dot: #4a6490;
       }
 
       * { box-sizing: border-box; }
@@ -43,7 +80,7 @@
       body {
         margin: 0;
         font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-        background: linear-gradient(180deg, var(--bg), #eff6ff);
+        background: linear-gradient(180deg, var(--bg), var(--bg-gradient-end));
         color: var(--text);
         line-height: 1.6;
       }
@@ -77,7 +114,7 @@
         position: sticky;
         top: 0;
         z-index: 10;
-        background: rgba(255, 255, 255, 0.95);
+        background: var(--header-bg);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid var(--border);
       }
@@ -116,6 +153,37 @@
         align-items: center;
       }
 
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .theme-switcher {
+        display: inline-flex;
+        padding: 0.24rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .theme-option {
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.76rem;
+        border-radius: 999px;
+        padding: 0.38rem 0.65rem;
+        cursor: pointer;
+      }
+
+      .theme-option.active {
+        background: var(--accent);
+        color: #ffffff;
+      }
+
       .site-nav a {
         color: var(--text);
         font-weight: 600;
@@ -130,7 +198,7 @@
         padding: 4rem 0 3.5rem;
         background:
           radial-gradient(circle at top right, rgba(0, 201, 242, 0.14), transparent 40%),
-          linear-gradient(180deg, #ffffff, #f0f6ff 60%);
+          linear-gradient(180deg, var(--hero-gradient-start), var(--hero-gradient-end) 60%);
       }
 
       .hero-grid {
@@ -188,11 +256,11 @@
       .btn-secondary {
         border-color: var(--accent);
         color: var(--accent);
-        background: #ffffff;
+        background: var(--surface);
       }
 
       .panel {
-        background: linear-gradient(170deg, #ffffff, #f7fbff);
+        background: linear-gradient(170deg, var(--card-gradient-start), var(--card-gradient-end));
         border: 1px solid var(--border);
         border-radius: 18px;
         padding: 1.2rem;
@@ -207,13 +275,13 @@
       }
 
       .logo {
-        background: #ffffff;
+        background: var(--surface);
         border: 1px dashed rgba(12, 85, 214, 0.35);
         border-radius: 12px;
         min-height: 62px;
         display: grid;
         place-items: center;
-        color: #3e5e8f;
+        color: var(--muted);
         font-weight: 700;
         font-size: 0.85rem;
       }
@@ -308,7 +376,7 @@
         height: 11px;
         border: 0;
         border-radius: 50%;
-        background: #9bb0d3;
+        background: var(--dot);
         cursor: pointer;
       }
 
@@ -323,7 +391,7 @@
         border-top: 1px solid var(--border);
         padding: 2rem 0;
         text-align: center;
-        color: #4b668d;
+        color: var(--muted);
       }
 
       .reveal {
@@ -346,6 +414,10 @@
         .founder { grid-template-columns: 0.85fr 1.15fr; }
         .split { grid-template-columns: 1fr 1fr; }
       }
+
+      @media (max-width: 759px) {
+        .site-header-inner { flex-wrap: wrap; }
+      }
     </style>
   </head>
   <body>
@@ -355,13 +427,20 @@
           <div class="logo-placeholder" aria-hidden="true">LOGO</div>
           <span>AC Consultoria</span>
         </a>
-        <nav class="site-nav" aria-label="Navegação principal">
-          <a href="#quem-somos">Quem Somos</a>
-          <a href="#pilares">Pilares</a>
-          <a href="#solucoes">Soluções</a>
-          <a href="#depoimentos">Depoimentos</a>
-          <a href="#cta-final" class="btn btn-secondary">Contato</a>
-        </nav>
+        <div class="header-tools">
+          <div class="theme-switcher" role="group" aria-label="Seletor de tema">
+            <button class="theme-option" type="button" data-theme-option="system">Sistema</button>
+            <button class="theme-option" type="button" data-theme-option="light">Claro</button>
+            <button class="theme-option" type="button" data-theme-option="dark">Escuro</button>
+          </div>
+          <nav class="site-nav" aria-label="Navegação principal">
+            <a href="#quem-somos">Quem Somos</a>
+            <a href="#pilares">Pilares</a>
+            <a href="#solucoes">Soluções</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#cta-final" class="btn btn-secondary">Contato</a>
+          </nav>
+        </div>
       </div>
     </header>
     <header class="hero" id="inicio">
@@ -566,6 +645,56 @@
     </footer>
 
     <script>
+      const THEME_STORAGE_KEY = 'theme-preference';
+      const themeButtons = document.querySelectorAll('[data-theme-option]');
+      const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+      const resolveTheme = (preference) => {
+        if (preference === 'light' || preference === 'dark') {
+          return preference;
+        }
+        return systemThemeQuery.matches ? 'dark' : 'light';
+      };
+
+      const updateThemeColor = (theme) => {
+        metaThemeColor.setAttribute('content', theme === 'dark' ? '#08162b' : '#06142d');
+      };
+
+      const setActiveThemeUI = (preference) => {
+        themeButtons.forEach((button) => {
+          button.classList.toggle('active', button.dataset.themeOption === preference);
+        });
+      };
+
+      const applyTheme = (preference) => {
+        const activeTheme = resolveTheme(preference);
+        document.documentElement.setAttribute('data-theme', activeTheme);
+        setActiveThemeUI(preference);
+        updateThemeColor(activeTheme);
+      };
+
+      const savedPreference = localStorage.getItem(THEME_STORAGE_KEY) || 'system';
+      applyTheme(savedPreference);
+
+      themeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const preference = button.dataset.themeOption;
+          if (preference === 'system') {
+            localStorage.removeItem(THEME_STORAGE_KEY);
+          } else {
+            localStorage.setItem(THEME_STORAGE_KEY, preference);
+          }
+          applyTheme(preference);
+        });
+      });
+
+      systemThemeQuery.addEventListener('change', () => {
+        if (!localStorage.getItem(THEME_STORAGE_KEY)) {
+          applyTheme('system');
+        }
+      });
+
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
