@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AC Consultoria & Instituto Phoenix | Desenvolvimento Humano e Corporativo</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <meta
       name="description"
       content="Landing page oficial da AC Consultoria & Instituto Phoenix. Desenvolvimento humano, liderança, inteligência emocional e alta performance para pessoas e organizações."
@@ -12,7 +13,7 @@
       name="keywords"
       content="AC Consultoria, Instituto Phoenix, desenvolvimento humano, liderança, soft skills, consultoria corporativa, inteligência emocional"
     />
-    <meta name="theme-color" content="#06142d" />
+    <meta name="theme-color" content="#f7fbff" />
     <link rel="canonical" href="https://acconsultoria.com.br/" />
     <meta property="og:title" content="AC Consultoria & Instituto Phoenix" />
     <meta
@@ -20,6 +21,12 @@
       content="Há mais de 20 anos desenvolvendo pessoas e transformando organizações."
     />
     <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script>
       (() => {
         const savedTheme = localStorage.getItem('theme-preference');
@@ -106,6 +113,10 @@
       }
 
       h1, h2, h3 { line-height: 1.2; margin-top: 0; }
+      h1, h2, h3 {
+        font-family: "Montserrat", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        letter-spacing: -0.02em;
+      }
       h1 { font-size: clamp(1.9rem, 4vw, 3.4rem); margin-bottom: 1rem; }
       h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); margin-bottom: 0.9rem; }
       p { margin-top: 0; color: var(--muted); }
@@ -115,8 +126,16 @@
         top: 0;
         z-index: 10;
         background: var(--header-bg);
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(9px) saturate(120%);
         border-bottom: 1px solid var(--border);
+        transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+
+      .site-header.scrolled {
+        background: color-mix(in srgb, var(--header-bg) 84%, transparent);
+        backdrop-filter: blur(16px) saturate(180%);
+        border-bottom-color: color-mix(in srgb, var(--accent) 22%, transparent);
+        box-shadow: 0 10px 26px rgba(3, 20, 45, 0.15);
       }
 
       .site-header-inner {
@@ -198,6 +217,8 @@
       .theme-option.active {
         background: var(--accent);
         color: #ffffff;
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-strong) 48%, transparent),
+                    0 0 18px color-mix(in srgb, var(--accent-strong) 60%, transparent);
       }
 
       .site-nav a {
@@ -302,6 +323,14 @@
         font-size: 0.85rem;
       }
 
+      .logo img {
+        width: 100%;
+        max-width: 128px;
+        height: 36px;
+        object-fit: contain;
+        opacity: 0.92;
+      }
+
       .three-col,
       .two-col {
         display: grid;
@@ -331,6 +360,10 @@
         align-items: center;
       }
 
+      .founder-media {
+        position: relative;
+      }
+
       .founder-photo {
         width: 100%;
         aspect-ratio: 4/5;
@@ -338,6 +371,10 @@
         object-fit: cover;
         border: 1px solid var(--border);
         background: linear-gradient(140deg, #20396a, #092046);
+      }
+
+      .founder-decoration {
+        display: none;
       }
 
       .list-check {
@@ -359,16 +396,28 @@
       }
 
       .slider {
-        display: grid;
-        grid-template-columns: repeat(4, 100%);
+        position: relative;
         overflow: hidden;
         border-radius: 16px;
+        min-height: 280px;
       }
 
       .slide {
+        position: absolute;
+        inset: 0;
         padding: 1rem;
         background: var(--surface);
         border: 1px solid var(--border);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
+      }
+
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
       }
 
       details {
@@ -429,6 +478,24 @@
         .two-col { grid-template-columns: repeat(2, 1fr); }
         .founder { grid-template-columns: 0.85fr 1.15fr; }
         .split { grid-template-columns: 1fr 1fr; }
+        .founder-media {
+          isolation: isolate;
+          padding: 1rem 1rem 0 0;
+        }
+        .founder-decoration {
+          display: block;
+          position: absolute;
+          z-index: -1;
+          right: -1rem;
+          top: -1rem;
+          width: 84%;
+          height: 84%;
+          border-radius: 18px;
+          border: 1px solid color-mix(in srgb, var(--dot) 65%, transparent);
+          background-image: radial-gradient(circle, color-mix(in srgb, var(--dot) 70%, transparent) 1.2px, transparent 1.2px);
+          background-size: 12px 12px;
+          opacity: 0.6;
+        }
       }
 
       @media (max-width: 759px) {
@@ -440,7 +507,7 @@
     <header class="site-header">
       <div class="container site-header-inner">
         <a href="#inicio" class="brand" aria-label="Página inicial da AC Consultoria">
-          <div class="logo-placeholder" aria-hidden="true">LOGO</div>
+          <img src="/images/logo-ac.png" alt="Logo AC Consultoria" style="width:42px;height:42px;border-radius:10px;object-fit:contain;background:var(--surface-soft);border:1px solid var(--border);padding:0.15rem;" />
           <span>AC Consultoria</span>
         </a>
         <div class="header-tools">
@@ -493,12 +560,12 @@
             Programas orientados para transformação comportamental, fortalecimento da liderança e cultura de alta performance.
           </p>
           <div class="logo-grid" aria-label="Empresas atendidas pela consultoria">
-            <div class="logo">Logo Empresa 1</div>
-            <div class="logo">Logo Empresa 2</div>
-            <div class="logo">Logo Empresa 3</div>
-            <div class="logo">Logo Empresa 4</div>
-            <div class="logo">Logo Empresa 5</div>
-            <div class="logo">Logo Empresa 6</div>
+            <div class="logo"><img src="/images/empresa-1.png" alt="Logo Empresa 1" loading="lazy" /></div>
+            <div class="logo"><img src="/images/empresa-2.png" alt="Logo Empresa 2" loading="lazy" /></div>
+            <div class="logo"><img src="/images/empresa-3.png" alt="Logo Empresa 3" loading="lazy" /></div>
+            <div class="logo"><img src="/images/empresa-4.png" alt="Logo Empresa 4" loading="lazy" /></div>
+            <div class="logo"><img src="/images/empresa-5.png" alt="Logo Empresa 5" loading="lazy" /></div>
+            <div class="logo"><img src="/images/empresa-6.png" alt="Logo Empresa 6" loading="lazy" /></div>
           </div>
         </aside>
       </div>
@@ -510,12 +577,12 @@
           <h2 id="autoridade" style="text-align:center;">Mais de 20 anos impactando “pessoas e organizações”.</h2>
           <p style="text-align:center; max-width:800px; margin:0 auto;">Somos especialistas em desenvolver pessoas para alcançarem resultados reais e sustentáveis.</p>
           <p style="text-align:center; margin-top:1rem;">Algumas das empresas e profissionais que já confiaram em nosso trabalho.</p>
-          <div class="logo-grid" style="margin-top:1.2rem;">
-            <div class="logo">Parceiro A</div><div class="logo">Parceiro B</div><div class="logo">Parceiro C</div>
-            <div class="logo">Parceiro D</div><div class="logo">Parceiro E</div><div class="logo">Parceiro F</div>
-          </div>
-        </div>
-      </section>
+	          <div class="logo-grid" style="margin-top:1.2rem;">
+	            <div class="logo"><img src="/images/empresa-1.png" alt="Logo parceiro 1" loading="lazy" /></div><div class="logo"><img src="/images/empresa-2.png" alt="Logo parceiro 2" loading="lazy" /></div><div class="logo"><img src="/images/empresa-3.png" alt="Logo parceiro 3" loading="lazy" /></div>
+	            <div class="logo"><img src="/images/empresa-4.png" alt="Logo parceiro 4" loading="lazy" /></div><div class="logo"><img src="/images/empresa-5.png" alt="Logo parceiro 5" loading="lazy" /></div><div class="logo"><img src="/images/empresa-6.png" alt="Logo parceiro 6" loading="lazy" /></div>
+	          </div>
+	        </div>
+	      </section>
 
       <section class="section reveal" aria-labelledby="quem-somos">
         <div class="container">
@@ -552,7 +619,10 @@
 
       <section class="section reveal" aria-labelledby="fundador">
         <div class="container founder">
-          <img class="founder-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80" alt="Antônio Carlos - Fundador e CEO" loading="lazy" />
+          <div class="founder-media">
+            <span class="founder-decoration" aria-hidden="true"></span>
+            <img class="founder-photo" src="/images/antonio-carlos.jpg" alt="Antônio Carlos - Fundador e CEO" loading="lazy" />
+          </div>
           <article>
             <h2 id="fundador">Antônio Carlos - Fundador e CEO</h2>
             <p>Antônio Carlos é especialista em desenvolvimento humano e organizacional, com mais de duas décadas de atuação no mercado corporativo. Psicanalista clínico, treinador comportamental e consultor empresarial, dedica sua carreira a ajudar pessoas e empresas a alcançarem níveis mais elevados de consciência, performance e resultados. Ao longo de sua trajetória, já impactou centenas de profissionais e organizações através de treinamentos, consultorias e programas de desenvolvimento humano.</p>
@@ -677,6 +747,7 @@
       const themeButtons = document.querySelectorAll('[data-theme-option]');
       const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      const siteHeader = document.querySelector('.site-header');
 
       const resolveTheme = (preference) => {
         if (preference === 'light' || preference === 'dark') {
@@ -686,7 +757,7 @@
       };
 
       const updateThemeColor = (theme) => {
-        metaThemeColor.setAttribute('content', theme === 'dark' ? '#08162b' : '#06142d');
+        metaThemeColor.setAttribute('content', theme === 'dark' ? '#08162b' : '#f7fbff');
       };
 
       const setActiveThemeUI = (preference) => {
@@ -723,6 +794,13 @@
         }
       });
 
+      const syncHeaderOnScroll = () => {
+        siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+      };
+
+      window.addEventListener('scroll', syncHeaderOnScroll, { passive: true });
+      syncHeaderOnScroll();
+
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -734,14 +812,25 @@
       reveals.forEach((el) => observer.observe(el));
 
       const slider = document.getElementById('testimonialSlider');
+      const slides = slider.querySelectorAll('.slide');
       const dots = document.querySelectorAll('.dot');
+
+      const setSlide = (index) => {
+        slides.forEach((slide, slideIndex) => {
+          const isActive = slideIndex === index;
+          slide.classList.toggle('active', isActive);
+          slide.setAttribute('aria-hidden', String(!isActive));
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('active', dotIndex === index);
+        });
+      };
+
+      setSlide(0);
+
       dots.forEach((dot) => {
         dot.addEventListener('click', () => {
-          const index = Number(dot.dataset.slide);
-          slider.style.transform = `translateX(-${index * 100}%)`;
-          slider.style.transition = 'transform .55s ease';
-          dots.forEach((d) => d.classList.remove('active'));
-          dot.classList.add('active');
+          setSlide(Number(dot.dataset.slide));
         });
       });
     </script>
