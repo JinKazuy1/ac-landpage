@@ -270,7 +270,7 @@
       .hero {
         position: relative;
         isolation: isolate;
-        padding: 2rem 0 3rem;
+        padding: 2.4rem 0 3.6rem;
         background:
           radial-gradient(120% 120% at 100% 0%, var(--hero-bg-secondary) 0%, color-mix(in srgb, var(--hero-bg-secondary) 26%, transparent) 40%, transparent 65%),
           radial-gradient(140% 140% at 0% 100%, var(--hero-bg-main) 0%, color-mix(in srgb, var(--hero-bg-main) 78%, #06142d) 55%, color-mix(in srgb, var(--hero-bg-secondary) 35%, #06142d) 100%);
@@ -305,6 +305,21 @@
       .hero-grid {
         display: grid;
         gap: 2rem;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        width: min(700px, 100%);
+      }
+
+      .hero-content::before {
+        content: "";
+        position: absolute;
+        inset: -1rem -0.8rem;
+        background: linear-gradient(120deg, color-mix(in srgb, var(--hero-bg-main) 65%, transparent), transparent 62%);
+        border-radius: 18px;
+        z-index: -1;
       }
 
       .hero-top {
@@ -416,17 +431,14 @@
         font-weight: 600;
         max-width: 20ch;
         margin-bottom: 0.85rem;
+        text-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
       }
 
       .hero-subheadline {
         color: var(--accent-strong);
         font-size: clamp(1rem, 2.2vw, 1.25rem);
         max-width: 44ch;
-      }
-
-      .hero-columns {
-        display: grid;
-        gap: 1rem;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
       }
 
       .hero-quote-wrap {
@@ -464,21 +476,28 @@
         font-family: "Montserrat", "Inter", sans-serif;
       }
 
-      .hero-photo-wrap {
-        display: flex;
-        justify-content: flex-end;
-        align-items: end;
+      .hero-background-media {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: min(48vw, 640px);
+        height: min(88%, 650px);
+        z-index: 0;
+        pointer-events: none;
       }
 
       .hero-photo {
-        width: min(100%, 510px);
-        max-height: 560px;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.5));
+        object-position: right bottom;
+        filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.45));
+        mask-image: linear-gradient(to left, #000 58%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to left, #000 58%, transparent 100%);
       }
 
       .hero-photo-fallback {
-        min-height: min(80vh, 520px);
+        min-height: 100%;
       }
 
       .brand-logo-fallback {
@@ -737,7 +756,6 @@
       @media (min-width: 760px) {
         .site-nav { display: flex; }
         .hero-grid { grid-template-columns: 1fr; align-items: center; }
-        .hero-columns { grid-template-columns: 1.1fr 0.9fr; align-items: end; }
         .logo-grid { grid-template-columns: repeat(3, 1fr); }
         .three-col { grid-template-columns: repeat(3, 1fr); }
         .two-col { grid-template-columns: repeat(2, 1fr); }
@@ -775,6 +793,14 @@
         .partner-logos {
           flex-wrap: wrap;
         }
+        .hero-content {
+          width: 100%;
+        }
+        .hero-background-media {
+          opacity: 0.22;
+          width: min(74vw, 420px);
+          height: min(72%, 420px);
+        }
       }
     </style>
   </head>
@@ -788,7 +814,6 @@
               <div class="smart-fallback brand-logo-fallback">[logo-ac.png]<small>76 x 76</small></div>
             </div>
           </div>
-          <span>AC Consultoria</span>
         </a>
         <div class="header-tools">
           <div class="theme-switcher" role="group" aria-label="Seletor de tema">
@@ -847,10 +872,9 @@
           </div>
         </div>
 
-        <h1 class="hero-headline">Desde de o ano 2000 preparando pessoas e organizações para os novos desafios</h1>
-        <p class="hero-subheadline">Mais que uma consultoria de desenvolvimento humano e profissional, aqui você encontra um mundo de oportunidades e realizações!</p>
-
-        <div class="hero-columns">
+        <div class="hero-content">
+          <h1 class="hero-headline">Desde de o ano 2000 preparando pessoas e organizações para os novos desafios</h1>
+          <p class="hero-subheadline">Mais que uma consultoria de desenvolvimento humano e profissional, aqui você encontra um mundo de oportunidades e realizações!</p>
           <div class="hero-quote-wrap">
             <div class="quote-mark" aria-hidden="true">“</div>
             <blockquote class="hero-quote">
@@ -858,11 +882,11 @@
             </blockquote>
             <cite class="quote-cite">AC</cite>
           </div>
-          <div class="hero-photo-wrap">
-            <div class="hero-photo smart-image">
-              <img src="/images/antonio-carlos.png" alt="Antônio Carlos falando ao microfone durante treinamento corporativo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-              <div class="smart-fallback hero-photo-fallback">[antonio-carlos.png]<small>1200 x 1600 (PNG sem fundo)</small></div>
-            </div>
+        </div>
+        <div class="hero-background-media">
+          <div class="hero-photo smart-image">
+            <img src="/images/antonio-carlos.png" alt="Antônio Carlos falando ao microfone durante treinamento corporativo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+            <div class="smart-fallback hero-photo-fallback">[antonio-carlos.png]<small>1200 x 1600 (PNG sem fundo)</small></div>
           </div>
         </div>
       </div>
