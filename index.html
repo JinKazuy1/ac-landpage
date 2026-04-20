@@ -57,9 +57,10 @@
         --hero-bg-secondary: #8db3ef;
         --hero-grid-line-a: rgba(12, 85, 214, 0.1);
         --hero-grid-line-b: rgba(0, 201, 242, 0.08);
-        --hero-dot-color: rgba(255, 255, 255, 0.78);
+        --hero-dot-color: rgba(0, 0, 0, 0.1);
         --hero-text-main: #0d2245;
         --hero-text-muted: #30507c;
+        --placeholder-bg: rgba(0, 0, 0, 0.03);
         --card-gradient-start: #ffffff;
         --card-gradient-end: #f7fbff;
         --dot: #9bb0d3;
@@ -84,9 +85,10 @@
         --hero-bg-secondary: #102742;
         --hero-grid-line-a: rgba(77, 227, 255, 0.09);
         --hero-grid-line-b: rgba(78, 163, 255, 0.08);
-        --hero-dot-color: rgba(255, 255, 255, 0.85);
+        --hero-dot-color: rgba(255, 255, 255, 0.1);
         --hero-text-main: #ffffff;
         --hero-text-muted: #d8e6fb;
+        --placeholder-bg: rgba(255, 255, 255, 0.05);
         --card-gradient-start: #102742;
         --card-gradient-end: #0e223d;
         --dot: #4a6490;
@@ -245,6 +247,26 @@
         color: var(--accent);
       }
 
+      .site-nav .btn-secondary {
+        border-color: transparent;
+      }
+
+      :root .site-nav .btn-secondary {
+        background: #0b1e3f;
+        color: #f4f8ff;
+      }
+
+      :root[data-theme="dark"] .site-nav .btn-secondary {
+        background: transparent;
+        border: 1px solid color-mix(in srgb, var(--accent-strong) 62%, transparent);
+        color: var(--accent-strong);
+      }
+
+      :root[data-theme="dark"] .site-nav .btn-secondary:hover {
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-strong) 42%, transparent),
+          0 0 16px color-mix(in srgb, var(--accent-strong) 55%, transparent);
+      }
+
       .hero {
         position: relative;
         isolation: isolate;
@@ -300,13 +322,9 @@
         color: var(--hero-text-main);
       }
 
-      .brand-ac-mark {
-        font-family: "Montserrat", "Inter", sans-serif;
-        font-size: clamp(2.1rem, 5vw, 3.2rem);
-        line-height: 1;
-        letter-spacing: -0.03em;
-        font-weight: 800;
-        color: var(--accent-strong);
+      .brand-ac-logo {
+        width: clamp(52px, 7vw, 76px);
+        height: clamp(52px, 7vw, 76px);
       }
 
       .brand-ac-text strong {
@@ -356,6 +374,42 @@
         backdrop-filter: blur(2px);
       }
 
+      .smart-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .smart-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .smart-fallback {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        min-height: 64px;
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        background: var(--placeholder-bg);
+        color: var(--text);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.67rem;
+        line-height: 1.3;
+        text-align: center;
+        padding: 0.35rem 0.4rem;
+      }
+
+      .smart-fallback small {
+        display: block;
+        opacity: 0.8;
+      }
+
       .hero-headline {
         color: var(--hero-text-main);
         font-size: clamp(1.28rem, 3vw, 2.2rem);
@@ -395,6 +449,7 @@
         border-radius: 0;
         color: var(--hero-text-main);
         font-style: italic;
+        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
         font-size: clamp(0.95rem, 1.9vw, 1.2rem);
         max-width: 44ch;
       }
@@ -406,6 +461,7 @@
         letter-spacing: 0.06em;
         font-style: normal;
         font-weight: 700;
+        font-family: "Montserrat", "Inter", sans-serif;
       }
 
       .hero-photo-wrap {
@@ -421,35 +477,34 @@
         filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.5));
       }
 
+      .hero-photo-fallback {
+        min-height: min(80vh, 520px);
+      }
+
+      .brand-logo-fallback {
+        min-height: clamp(52px, 7vw, 76px);
+      }
+
+      .partner-logo .smart-fallback {
+        min-height: 38px;
+        border-radius: 8px;
+        font-size: 0.62rem;
+      }
+
       .file-placeholder {
         display: grid;
         place-items: center;
         width: 100%;
         height: 100%;
-        min-height: 140px;
-        border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
-        border-radius: 14px;
-        background: color-mix(in srgb, var(--surface) 86%, transparent);
+        min-height: 62px;
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        background: var(--placeholder-bg);
         color: var(--text);
-        font-size: 0.78rem;
-        font-weight: 700;
+        font-size: 0.72rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         text-align: center;
-        padding: 0.8rem;
-        line-height: 1.3;
-      }
-
-      .brand-logo-placeholder {
-        width: 42px;
-        height: 42px;
-        border-radius: 10px;
-        min-height: 42px;
-        font-size: 0.62rem;
-      }
-
-      .hero-photo.file-placeholder,
-      .founder-photo.file-placeholder {
-        min-height: 340px;
-        background: color-mix(in srgb, var(--bg-alt) 78%, var(--surface));
+        padding: 0.5rem;
       }
 
       .benefits {
@@ -727,7 +782,12 @@
     <header class="site-header">
       <div class="container site-header-inner">
         <a href="#inicio" class="brand" aria-label="Página inicial da AC Consultoria">
-          <div class="file-placeholder brand-logo-placeholder" aria-label="Placeholder da logo">logo-ac.png</div>
+          <div class="brand-ac-logo">
+            <div class="smart-image">
+              <img src="/images/logo-ac.png" alt="Logo AC Consultoria" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="smart-fallback brand-logo-fallback">[logo-ac.png]<small>76 x 76</small></div>
+            </div>
+          </div>
           <span>AC Consultoria</span>
         </a>
         <div class="header-tools">
@@ -771,8 +831,18 @@
           <div class="partner-zone">
             <div class="partner-label">PARCERIA</div>
             <div class="partner-logos">
-              <div class="partner-logo" aria-label="Associação Comercial São Paulo">Associação Comercial<br />São Paulo</div>
-              <div class="partner-logo" aria-label="Phoenix Institute">IP · Phoenix Institute</div>
+              <div class="partner-logo" aria-label="Associação Comercial São Paulo">
+                <div class="smart-image">
+                  <img src="/images/logo-sp.png" alt="Logo Associação Comercial São Paulo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                  <div class="smart-fallback">[logo-sp.png]<small>220 x 88</small></div>
+                </div>
+              </div>
+              <div class="partner-logo" aria-label="Phoenix Institute">
+                <div class="smart-image">
+                  <img src="/images/logo-ip.png" alt="Logo Phoenix Institute" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                  <div class="smart-fallback">[logo-ip.png]<small>220 x 88</small></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -789,7 +859,10 @@
             <cite class="quote-cite">AC</cite>
           </div>
           <div class="hero-photo-wrap">
-            <div class="hero-photo file-placeholder" role="img" aria-label="Imagem esperada antonio-carlos.jpg">antonio-carlos.jpg</div>
+            <div class="hero-photo smart-image">
+              <img src="/images/antonio-carlos.png" alt="Antônio Carlos falando ao microfone durante treinamento corporativo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="smart-fallback hero-photo-fallback">[antonio-carlos.png]<small>1200 x 1600 (PNG sem fundo)</small></div>
+            </div>
           </div>
         </div>
       </div>
@@ -845,7 +918,10 @@
         <div class="container founder">
           <div class="founder-media">
             <span class="founder-decoration" aria-hidden="true"></span>
-            <div class="founder-photo file-placeholder" role="img" aria-label="Imagem esperada antonio-carlos.jpg">antonio-carlos.jpg</div>
+            <div class="founder-photo smart-image">
+              <img src="/images/antonio-carlos.jpg" alt="Antônio Carlos - Fundador e CEO" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="smart-fallback">[antonio-carlos.jpg]<small>900 x 1125</small></div>
+            </div>
           </div>
           <article>
             <h2 id="fundador">Antônio Carlos - Fundador e CEO</h2>
