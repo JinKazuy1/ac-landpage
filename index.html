@@ -53,6 +53,13 @@
         --bg-gradient-end: #eff6ff;
         --hero-gradient-start: #ffffff;
         --hero-gradient-end: #f0f6ff;
+        --hero-bg-main: #e9f3ff;
+        --hero-bg-secondary: #8db3ef;
+        --hero-grid-line-a: rgba(12, 85, 214, 0.1);
+        --hero-grid-line-b: rgba(0, 201, 242, 0.08);
+        --hero-dot-color: rgba(255, 255, 255, 0.78);
+        --hero-text-main: #0d2245;
+        --hero-text-muted: #30507c;
         --card-gradient-start: #ffffff;
         --card-gradient-end: #f7fbff;
         --dot: #9bb0d3;
@@ -73,6 +80,13 @@
         --bg-gradient-end: #0b213e;
         --hero-gradient-start: #0d2441;
         --hero-gradient-end: #102742;
+        --hero-bg-main: #000000;
+        --hero-bg-secondary: #102742;
+        --hero-grid-line-a: rgba(77, 227, 255, 0.09);
+        --hero-grid-line-b: rgba(78, 163, 255, 0.08);
+        --hero-dot-color: rgba(255, 255, 255, 0.85);
+        --hero-text-main: #ffffff;
+        --hero-text-muted: #d8e6fb;
         --card-gradient-start: #102742;
         --card-gradient-end: #0e223d;
         --dot: #4a6490;
@@ -232,16 +246,12 @@
       }
 
       .hero {
-        --bg: #000000;
-        --bg-alt: #102742;
-        --accent: #4de3ff;
-        --dot: #ffffff;
         position: relative;
         isolation: isolate;
         padding: 2rem 0 3rem;
         background:
-          radial-gradient(120% 120% at 100% 0%, var(--bg-alt) 0%, rgba(16, 39, 66, 0.25) 40%, transparent 65%),
-          radial-gradient(140% 140% at 0% 100%, var(--bg) 0%, #020814 55%, #06142d 100%);
+          radial-gradient(120% 120% at 100% 0%, var(--hero-bg-secondary) 0%, color-mix(in srgb, var(--hero-bg-secondary) 26%, transparent) 40%, transparent 65%),
+          radial-gradient(140% 140% at 0% 100%, var(--hero-bg-main) 0%, color-mix(in srgb, var(--hero-bg-main) 78%, #06142d) 55%, color-mix(in srgb, var(--hero-bg-secondary) 35%, #06142d) 100%);
         overflow: hidden;
       }
 
@@ -250,8 +260,8 @@
         position: absolute;
         inset: 0;
         background:
-          repeating-linear-gradient(130deg, rgba(77, 227, 255, 0.09) 0 1px, transparent 1px 34px),
-          repeating-linear-gradient(45deg, rgba(78, 163, 255, 0.08) 0 1px, transparent 1px 42px);
+          repeating-linear-gradient(130deg, var(--hero-grid-line-a) 0 1px, transparent 1px 34px),
+          repeating-linear-gradient(45deg, var(--hero-grid-line-b) 0 1px, transparent 1px 42px);
         pointer-events: none;
         z-index: -2;
       }
@@ -263,7 +273,7 @@
         right: 0.7rem;
         width: min(240px, 46vw);
         height: min(190px, 32vw);
-        background-image: radial-gradient(circle, color-mix(in srgb, var(--dot) 86%, transparent) 1.1px, transparent 1.1px);
+        background-image: radial-gradient(circle, var(--hero-dot-color) 1.1px, transparent 1.1px);
         background-size: 11px 11px;
         opacity: 0.55;
         pointer-events: none;
@@ -287,7 +297,7 @@
         display: flex;
         align-items: center;
         gap: 0.8rem;
-        color: #ffffff;
+        color: var(--hero-text-main);
       }
 
       .brand-ac-mark {
@@ -308,13 +318,13 @@
 
       .brand-ac-text small {
         display: block;
-        color: #d8e6fb;
+        color: var(--hero-text-muted);
         font-style: italic;
       }
 
       .partner-zone {
         position: relative;
-        color: #d7e6fd;
+        color: var(--hero-text-muted);
         text-align: right;
       }
 
@@ -347,7 +357,7 @@
       }
 
       .hero-headline {
-        color: #ffffff;
+        color: var(--hero-text-main);
         font-size: clamp(1.28rem, 3vw, 2.2rem);
         font-weight: 600;
         max-width: 20ch;
@@ -370,7 +380,7 @@
       }
 
       .quote-mark {
-        color: #ffffff;
+        color: var(--hero-text-main);
         font-size: clamp(2.8rem, 8vw, 5.6rem);
         line-height: 0.8;
         font-family: "Montserrat", serif;
@@ -383,7 +393,7 @@
         border: 0;
         background: none;
         border-radius: 0;
-        color: #ffffff;
+        color: var(--hero-text-main);
         font-style: italic;
         font-size: clamp(0.95rem, 1.9vw, 1.2rem);
         max-width: 44ch;
@@ -409,6 +419,37 @@
         max-height: 560px;
         object-fit: contain;
         filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.5));
+      }
+
+      .file-placeholder {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        min-height: 140px;
+        border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--surface) 86%, transparent);
+        color: var(--text);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-align: center;
+        padding: 0.8rem;
+        line-height: 1.3;
+      }
+
+      .brand-logo-placeholder {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        min-height: 42px;
+        font-size: 0.62rem;
+      }
+
+      .hero-photo.file-placeholder,
+      .founder-photo.file-placeholder {
+        min-height: 340px;
+        background: color-mix(in srgb, var(--bg-alt) 78%, var(--surface));
       }
 
       .benefits {
@@ -686,7 +727,7 @@
     <header class="site-header">
       <div class="container site-header-inner">
         <a href="#inicio" class="brand" aria-label="Página inicial da AC Consultoria">
-          <img src="/images/logo-ac.png" alt="Logo AC Consultoria" style="width:42px;height:42px;border-radius:10px;object-fit:contain;background:var(--surface-soft);border:1px solid var(--border);padding:0.15rem;" />
+          <div class="file-placeholder brand-logo-placeholder" aria-label="Placeholder da logo">logo-ac.png</div>
           <span>AC Consultoria</span>
         </a>
         <div class="header-tools">
@@ -748,7 +789,7 @@
             <cite class="quote-cite">AC</cite>
           </div>
           <div class="hero-photo-wrap">
-            <img class="hero-photo" src="/images/antonio-carlos.jpg" alt="Antônio Carlos falando ao microfone durante treinamento corporativo" loading="eager" />
+            <div class="hero-photo file-placeholder" role="img" aria-label="Imagem esperada antonio-carlos.jpg">antonio-carlos.jpg</div>
           </div>
         </div>
       </div>
@@ -761,8 +802,8 @@
           <p style="text-align:center; max-width:800px; margin:0 auto;">Somos especialistas em desenvolver pessoas para alcançarem resultados reais e sustentáveis.</p>
           <p style="text-align:center; margin-top:1rem;">Algumas das empresas e profissionais que já confiaram em nosso trabalho.</p>
 	          <div class="logo-grid" style="margin-top:1.2rem;">
-	            <div class="logo"><img src="/images/empresa-1.png" alt="Logo parceiro 1" loading="lazy" /></div><div class="logo"><img src="/images/empresa-2.png" alt="Logo parceiro 2" loading="lazy" /></div><div class="logo"><img src="/images/empresa-3.png" alt="Logo parceiro 3" loading="lazy" /></div>
-	            <div class="logo"><img src="/images/empresa-4.png" alt="Logo parceiro 4" loading="lazy" /></div><div class="logo"><img src="/images/empresa-5.png" alt="Logo parceiro 5" loading="lazy" /></div><div class="logo"><img src="/images/empresa-6.png" alt="Logo parceiro 6" loading="lazy" /></div>
+	            <div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-1.png">empresa-1.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-2.png">empresa-2.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-3.png">empresa-3.png</div></div>
+	            <div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-4.png">empresa-4.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-5.png">empresa-5.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-6.png">empresa-6.png</div></div>
 	          </div>
 	        </div>
 	      </section>
@@ -804,7 +845,7 @@
         <div class="container founder">
           <div class="founder-media">
             <span class="founder-decoration" aria-hidden="true"></span>
-            <img class="founder-photo" src="/images/antonio-carlos.jpg" alt="Antônio Carlos - Fundador e CEO" loading="lazy" />
+            <div class="founder-photo file-placeholder" role="img" aria-label="Imagem esperada antonio-carlos.jpg">antonio-carlos.jpg</div>
           </div>
           <article>
             <h2 id="fundador">Antônio Carlos - Fundador e CEO</h2>
