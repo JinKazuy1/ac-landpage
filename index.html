@@ -232,15 +232,183 @@
       }
 
       .hero {
-        padding: 4rem 0 3.5rem;
+        --bg: #000000;
+        --bg-alt: #102742;
+        --accent: #4de3ff;
+        --dot: #ffffff;
+        position: relative;
+        isolation: isolate;
+        padding: 2rem 0 3rem;
         background:
-          radial-gradient(circle at top right, rgba(0, 201, 242, 0.14), transparent 40%),
-          linear-gradient(180deg, var(--hero-gradient-start), var(--hero-gradient-end) 60%);
+          radial-gradient(120% 120% at 100% 0%, var(--bg-alt) 0%, rgba(16, 39, 66, 0.25) 40%, transparent 65%),
+          radial-gradient(140% 140% at 0% 100%, var(--bg) 0%, #020814 55%, #06142d 100%);
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(130deg, rgba(77, 227, 255, 0.09) 0 1px, transparent 1px 34px),
+          repeating-linear-gradient(45deg, rgba(78, 163, 255, 0.08) 0 1px, transparent 1px 42px);
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0.7rem;
+        right: 0.7rem;
+        width: min(240px, 46vw);
+        height: min(190px, 32vw);
+        background-image: radial-gradient(circle, color-mix(in srgb, var(--dot) 86%, transparent) 1.1px, transparent 1.1px);
+        background-size: 11px 11px;
+        opacity: 0.55;
+        pointer-events: none;
+        z-index: -1;
       }
 
       .hero-grid {
         display: grid;
         gap: 2rem;
+      }
+
+      .hero-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.6rem;
+      }
+
+      .brand-ac {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: #ffffff;
+      }
+
+      .brand-ac-mark {
+        font-family: "Montserrat", "Inter", sans-serif;
+        font-size: clamp(2.1rem, 5vw, 3.2rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+        color: var(--accent-strong);
+      }
+
+      .brand-ac-text strong {
+        display: block;
+        font-family: "Montserrat", "Inter", sans-serif;
+        font-size: clamp(0.92rem, 2vw, 1.2rem);
+        font-weight: 700;
+      }
+
+      .brand-ac-text small {
+        display: block;
+        color: #d8e6fb;
+        font-style: italic;
+      }
+
+      .partner-zone {
+        position: relative;
+        color: #d7e6fd;
+        text-align: right;
+      }
+
+      .partner-label {
+        letter-spacing: 0.2em;
+        font-size: 0.66rem;
+        font-weight: 700;
+        margin-bottom: 0.45rem;
+        opacity: 0.95;
+      }
+
+      .partner-logos {
+        display: flex;
+        gap: 0.55rem;
+      }
+
+      .partner-logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        min-width: 118px;
+        padding: 0.42rem 0.58rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.7rem;
+        line-height: 1.2;
+        backdrop-filter: blur(2px);
+      }
+
+      .hero-headline {
+        color: #ffffff;
+        font-size: clamp(1.28rem, 3vw, 2.2rem);
+        font-weight: 600;
+        max-width: 20ch;
+        margin-bottom: 0.85rem;
+      }
+
+      .hero-subheadline {
+        color: var(--accent-strong);
+        font-size: clamp(1rem, 2.2vw, 1.25rem);
+        max-width: 44ch;
+      }
+
+      .hero-columns {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .hero-quote-wrap {
+        align-self: end;
+      }
+
+      .quote-mark {
+        color: #ffffff;
+        font-size: clamp(2.8rem, 8vw, 5.6rem);
+        line-height: 0.8;
+        font-family: "Montserrat", serif;
+        margin-bottom: 0.2rem;
+      }
+
+      .hero-quote {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        border-radius: 0;
+        color: #ffffff;
+        font-style: italic;
+        font-size: clamp(0.95rem, 1.9vw, 1.2rem);
+        max-width: 44ch;
+      }
+
+      .quote-cite {
+        margin-top: 0.72rem;
+        display: block;
+        color: var(--accent-strong);
+        letter-spacing: 0.06em;
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      .hero-photo-wrap {
+        display: flex;
+        justify-content: flex-end;
+        align-items: end;
+      }
+
+      .hero-photo {
+        width: min(100%, 510px);
+        max-height: 560px;
+        object-fit: contain;
+        filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.5));
       }
 
       .benefits {
@@ -472,7 +640,8 @@
 
       @media (min-width: 760px) {
         .site-nav { display: flex; }
-        .hero-grid { grid-template-columns: 1.25fr 1fr; align-items: center; }
+        .hero-grid { grid-template-columns: 1fr; align-items: center; }
+        .hero-columns { grid-template-columns: 1.1fr 0.9fr; align-items: end; }
         .logo-grid { grid-template-columns: repeat(3, 1fr); }
         .three-col { grid-template-columns: repeat(3, 1fr); }
         .two-col { grid-template-columns: repeat(2, 1fr); }
@@ -500,6 +669,16 @@
 
       @media (max-width: 759px) {
         .site-header-inner { flex-wrap: wrap; }
+        .hero-top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .partner-zone {
+          text-align: left;
+        }
+        .partner-logos {
+          flex-wrap: wrap;
+        }
       }
     </style>
   </head>
@@ -538,38 +717,42 @@
         </div>
       </div>
     </header>
-    <header class="hero" id="inicio">
+    <section class="hero" id="inicio" aria-label="Seção principal de autoridade">
       <div class="container hero-grid reveal">
-        <article>
-          <span class="tag">AC Consultoria & Instituto Phoenix</span>
-          <h1>Desenvolvemos pessoas e transformamos organizações.</h1>
-          <p>
-            Há mais de duas décadas "Preparando empresas & Organizações para os Novos Desafios"
-          </p>
-          <ul class="benefits">
-            <li><span class="check">✔</span><span>Temos soluções, recursos e ferramentas para o desenvolvimento humano, pessoal, profissional para as organizações e a vida.</span></li>
-            <li><span class="check">✔</span><span>Leve nossos treinamentos para sua empresa!</span></li>
-          </ul>
-          <div class="actions">
-            <a class="btn btn-primary" href="https://wa.me/5511947574348" target="_blank" rel="noopener noreferrer">Fale com um especialista</a>
+        <div class="hero-top">
+          <div class="brand-ac">
+            <div class="brand-ac-mark" aria-hidden="true">AC</div>
+            <div class="brand-ac-text">
+              <strong>ANTÔNIO CARLOS Consultoria &amp; Treinamentos</strong>
+              <small>Desde de o ano 2000</small>
+            </div>
           </div>
-        </article>
-        <aside class="panel">
-          <h2>Impacto com método e resultado</h2>
-          <p>
-            Programas orientados para transformação comportamental, fortalecimento da liderança e cultura de alta performance.
-          </p>
-          <div class="logo-grid" aria-label="Empresas atendidas pela consultoria">
-            <div class="logo"><img src="/images/empresa-1.png" alt="Logo Empresa 1" loading="lazy" /></div>
-            <div class="logo"><img src="/images/empresa-2.png" alt="Logo Empresa 2" loading="lazy" /></div>
-            <div class="logo"><img src="/images/empresa-3.png" alt="Logo Empresa 3" loading="lazy" /></div>
-            <div class="logo"><img src="/images/empresa-4.png" alt="Logo Empresa 4" loading="lazy" /></div>
-            <div class="logo"><img src="/images/empresa-5.png" alt="Logo Empresa 5" loading="lazy" /></div>
-            <div class="logo"><img src="/images/empresa-6.png" alt="Logo Empresa 6" loading="lazy" /></div>
+          <div class="partner-zone">
+            <div class="partner-label">PARCERIA</div>
+            <div class="partner-logos">
+              <div class="partner-logo" aria-label="Associação Comercial São Paulo">Associação Comercial<br />São Paulo</div>
+              <div class="partner-logo" aria-label="Phoenix Institute">IP · Phoenix Institute</div>
+            </div>
           </div>
-        </aside>
+        </div>
+
+        <h1 class="hero-headline">Desde de o ano 2000 preparando pessoas e organizações para os novos desafios</h1>
+        <p class="hero-subheadline">Mais que uma consultoria de desenvolvimento humano e profissional, aqui você encontra um mundo de oportunidades e realizações!</p>
+
+        <div class="hero-columns">
+          <div class="hero-quote-wrap">
+            <div class="quote-mark" aria-hidden="true">“</div>
+            <blockquote class="hero-quote">
+              Onde o autoconhecimento encontra estratégia, transforma pessoas, potencializa líderes de alta performance, fortalece organizações
+            </blockquote>
+            <cite class="quote-cite">AC</cite>
+          </div>
+          <div class="hero-photo-wrap">
+            <img class="hero-photo" src="/images/antonio-carlos.jpg" alt="Antônio Carlos falando ao microfone durante treinamento corporativo" loading="eager" />
+          </div>
+        </div>
       </div>
-    </header>
+    </section>
 
     <main>
       <section class="section reveal" aria-labelledby="autoridade">
