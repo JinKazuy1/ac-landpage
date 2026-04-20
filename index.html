@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AC Consultoria & Instituto Phoenix | Desenvolvimento Humano e Corporativo</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <meta
       name="description"
       content="Landing page oficial da AC Consultoria & Instituto Phoenix. Desenvolvimento humano, liderança, inteligência emocional e alta performance para pessoas e organizações."
@@ -12,7 +13,7 @@
       name="keywords"
       content="AC Consultoria, Instituto Phoenix, desenvolvimento humano, liderança, soft skills, consultoria corporativa, inteligência emocional"
     />
-    <meta name="theme-color" content="#06142d" />
+    <meta name="theme-color" content="#f7fbff" />
     <link rel="canonical" href="https://acconsultoria.com.br/" />
     <meta property="og:title" content="AC Consultoria & Instituto Phoenix" />
     <meta
@@ -20,6 +21,12 @@
       content="Há mais de 20 anos desenvolvendo pessoas e transformando organizações."
     />
     <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script>
       (() => {
         const savedTheme = localStorage.getItem('theme-preference');
@@ -46,6 +53,14 @@
         --bg-gradient-end: #eff6ff;
         --hero-gradient-start: #ffffff;
         --hero-gradient-end: #f0f6ff;
+        --hero-bg-main: #e9f3ff;
+        --hero-bg-secondary: #8db3ef;
+        --hero-grid-line-a: rgba(12, 85, 214, 0.1);
+        --hero-grid-line-b: rgba(0, 201, 242, 0.08);
+        --hero-dot-color: rgba(0, 0, 0, 0.1);
+        --hero-text-main: #0d2245;
+        --hero-text-muted: #30507c;
+        --placeholder-bg: rgba(0, 0, 0, 0.03);
         --card-gradient-start: #ffffff;
         --card-gradient-end: #f7fbff;
         --dot: #9bb0d3;
@@ -66,6 +81,14 @@
         --bg-gradient-end: #0b213e;
         --hero-gradient-start: #0d2441;
         --hero-gradient-end: #102742;
+        --hero-bg-main: #000000;
+        --hero-bg-secondary: #102742;
+        --hero-grid-line-a: rgba(77, 227, 255, 0.09);
+        --hero-grid-line-b: rgba(78, 163, 255, 0.08);
+        --hero-dot-color: rgba(255, 255, 255, 0.1);
+        --hero-text-main: #ffffff;
+        --hero-text-muted: #d8e6fb;
+        --placeholder-bg: rgba(255, 255, 255, 0.05);
         --card-gradient-start: #102742;
         --card-gradient-end: #0e223d;
         --dot: #4a6490;
@@ -106,6 +129,10 @@
       }
 
       h1, h2, h3 { line-height: 1.2; margin-top: 0; }
+      h1, h2, h3 {
+        font-family: "Montserrat", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        letter-spacing: -0.02em;
+      }
       h1 { font-size: clamp(1.9rem, 4vw, 3.4rem); margin-bottom: 1rem; }
       h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); margin-bottom: 0.9rem; }
       p { margin-top: 0; color: var(--muted); }
@@ -115,8 +142,16 @@
         top: 0;
         z-index: 10;
         background: var(--header-bg);
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(9px) saturate(120%);
         border-bottom: 1px solid var(--border);
+        transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+
+      .site-header.scrolled {
+        background: color-mix(in srgb, var(--header-bg) 84%, transparent);
+        backdrop-filter: blur(16px) saturate(180%);
+        border-bottom-color: color-mix(in srgb, var(--accent) 22%, transparent);
+        box-shadow: 0 10px 26px rgba(3, 20, 45, 0.15);
       }
 
       .site-header-inner {
@@ -161,7 +196,9 @@
 
       .theme-switcher {
         display: inline-flex;
-        padding: 0.24rem;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 0.2rem;
         border: 1px solid var(--border);
         border-radius: 999px;
         background: var(--surface);
@@ -169,19 +206,35 @@
       }
 
       .theme-option {
+        width: 2rem;
+        height: 2rem;
         border: 0;
         background: transparent;
         color: var(--muted);
-        font-weight: 700;
-        font-size: 0.76rem;
-        border-radius: 999px;
-        padding: 0.38rem 0.65rem;
+        border-radius: 50%;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+
+      .theme-option:hover {
+        transform: translateY(-1px);
+      }
+
+      .theme-option svg {
+        width: 1rem;
+        height: 1rem;
+        fill: currentColor;
       }
 
       .theme-option.active {
         background: var(--accent);
         color: #ffffff;
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-strong) 48%, transparent),
+                    0 0 18px color-mix(in srgb, var(--accent-strong) 60%, transparent);
       }
 
       .site-nav a {
@@ -194,16 +247,283 @@
         color: var(--accent);
       }
 
+      .site-nav .btn-secondary {
+        border-color: transparent;
+      }
+
+      :root .site-nav .btn-secondary {
+        background: #0b1e3f;
+        color: #f4f8ff;
+      }
+
+      :root[data-theme="dark"] .site-nav .btn-secondary {
+        background: transparent;
+        border: 1px solid color-mix(in srgb, var(--accent-strong) 62%, transparent);
+        color: var(--accent-strong);
+      }
+
+      :root[data-theme="dark"] .site-nav .btn-secondary:hover {
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-strong) 42%, transparent),
+          0 0 16px color-mix(in srgb, var(--accent-strong) 55%, transparent);
+      }
+
       .hero {
-        padding: 4rem 0 3.5rem;
+        position: relative;
+        isolation: isolate;
+        padding: 2.4rem 0 3.6rem;
         background:
-          radial-gradient(circle at top right, rgba(0, 201, 242, 0.14), transparent 40%),
-          linear-gradient(180deg, var(--hero-gradient-start), var(--hero-gradient-end) 60%);
+          radial-gradient(120% 120% at 100% 0%, var(--hero-bg-secondary) 0%, color-mix(in srgb, var(--hero-bg-secondary) 26%, transparent) 40%, transparent 65%),
+          radial-gradient(140% 140% at 0% 100%, var(--hero-bg-main) 0%, color-mix(in srgb, var(--hero-bg-main) 78%, #06142d) 55%, color-mix(in srgb, var(--hero-bg-secondary) 35%, #06142d) 100%);
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(130deg, var(--hero-grid-line-a) 0 1px, transparent 1px 34px),
+          repeating-linear-gradient(45deg, var(--hero-grid-line-b) 0 1px, transparent 1px 42px);
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0.7rem;
+        right: 0.7rem;
+        width: min(240px, 46vw);
+        height: min(190px, 32vw);
+        background-image: radial-gradient(circle, var(--hero-dot-color) 1.1px, transparent 1.1px);
+        background-size: 11px 11px;
+        opacity: 0.55;
+        pointer-events: none;
+        z-index: -1;
       }
 
       .hero-grid {
         display: grid;
         gap: 2rem;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        width: min(700px, 100%);
+      }
+
+      .hero-content::before {
+        content: "";
+        position: absolute;
+        inset: -1rem -0.8rem;
+        background: linear-gradient(120deg, color-mix(in srgb, var(--hero-bg-main) 65%, transparent), transparent 62%);
+        border-radius: 18px;
+        z-index: -1;
+      }
+
+      .hero-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.6rem;
+      }
+
+      .brand-ac {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: var(--hero-text-main);
+      }
+
+      .brand-ac-logo {
+        width: clamp(52px, 7vw, 76px);
+        height: clamp(52px, 7vw, 76px);
+      }
+
+      .brand-ac-text strong {
+        display: block;
+        font-family: "Montserrat", "Inter", sans-serif;
+        font-size: clamp(0.92rem, 2vw, 1.2rem);
+        font-weight: 700;
+      }
+
+      .brand-ac-text small {
+        display: block;
+        color: var(--hero-text-muted);
+        font-style: italic;
+      }
+
+      .partner-zone {
+        position: relative;
+        color: var(--hero-text-muted);
+        text-align: right;
+      }
+
+      .partner-label {
+        letter-spacing: 0.2em;
+        font-size: 0.66rem;
+        font-weight: 700;
+        margin-bottom: 0.45rem;
+        opacity: 0.95;
+      }
+
+      .partner-logos {
+        display: flex;
+        gap: 0.55rem;
+      }
+
+      .partner-logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        min-width: 118px;
+        padding: 0.42rem 0.58rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.7rem;
+        line-height: 1.2;
+        backdrop-filter: blur(2px);
+      }
+
+      .smart-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .smart-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .smart-fallback {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        min-height: 64px;
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        background: var(--placeholder-bg);
+        color: var(--text);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.67rem;
+        line-height: 1.3;
+        text-align: center;
+        padding: 0.35rem 0.4rem;
+      }
+
+      .smart-fallback small {
+        display: block;
+        opacity: 0.8;
+      }
+
+      .hero-headline {
+        color: var(--hero-text-main);
+        font-size: clamp(1.28rem, 3vw, 2.2rem);
+        font-weight: 600;
+        max-width: 20ch;
+        margin-bottom: 0.85rem;
+        text-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      }
+
+      .hero-subheadline {
+        color: var(--accent-strong);
+        font-size: clamp(1rem, 2.2vw, 1.25rem);
+        max-width: 44ch;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-quote-wrap {
+        align-self: end;
+      }
+
+      .quote-mark {
+        color: var(--hero-text-main);
+        font-size: clamp(2.8rem, 8vw, 5.6rem);
+        line-height: 0.8;
+        font-family: "Montserrat", serif;
+        margin-bottom: 0.2rem;
+      }
+
+      .hero-quote {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        border-radius: 0;
+        color: var(--hero-text-main);
+        font-style: italic;
+        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        font-size: clamp(0.95rem, 1.9vw, 1.2rem);
+        max-width: 44ch;
+      }
+
+      .quote-cite {
+        margin-top: 0.72rem;
+        display: block;
+        color: var(--accent-strong);
+        letter-spacing: 0.06em;
+        font-style: normal;
+        font-weight: 700;
+        font-family: "Montserrat", "Inter", sans-serif;
+      }
+
+      .hero-background-media {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: min(48vw, 640px);
+        height: min(88%, 650px);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: right bottom;
+        filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.45));
+        mask-image: linear-gradient(to left, #000 58%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to left, #000 58%, transparent 100%);
+      }
+
+      .hero-photo-fallback {
+        min-height: 100%;
+      }
+
+      .brand-logo-fallback {
+        min-height: clamp(52px, 7vw, 76px);
+      }
+
+      .partner-logo .smart-fallback {
+        min-height: 38px;
+        border-radius: 8px;
+        font-size: 0.62rem;
+      }
+
+      .file-placeholder {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        min-height: 62px;
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        background: var(--placeholder-bg);
+        color: var(--text);
+        font-size: 0.72rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        text-align: center;
+        padding: 0.5rem;
       }
 
       .benefits {
@@ -286,6 +606,14 @@
         font-size: 0.85rem;
       }
 
+      .logo img {
+        width: 100%;
+        max-width: 128px;
+        height: 36px;
+        object-fit: contain;
+        opacity: 0.92;
+      }
+
       .three-col,
       .two-col {
         display: grid;
@@ -315,6 +643,10 @@
         align-items: center;
       }
 
+      .founder-media {
+        position: relative;
+      }
+
       .founder-photo {
         width: 100%;
         aspect-ratio: 4/5;
@@ -322,6 +654,10 @@
         object-fit: cover;
         border: 1px solid var(--border);
         background: linear-gradient(140deg, #20396a, #092046);
+      }
+
+      .founder-decoration {
+        display: none;
       }
 
       .list-check {
@@ -343,16 +679,28 @@
       }
 
       .slider {
-        display: grid;
-        grid-template-columns: repeat(4, 100%);
+        position: relative;
         overflow: hidden;
         border-radius: 16px;
+        min-height: 280px;
       }
 
       .slide {
+        position: absolute;
+        inset: 0;
         padding: 1rem;
         background: var(--surface);
         border: 1px solid var(--border);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
+      }
+
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
       }
 
       details {
@@ -407,16 +755,52 @@
 
       @media (min-width: 760px) {
         .site-nav { display: flex; }
-        .hero-grid { grid-template-columns: 1.25fr 1fr; align-items: center; }
+        .hero-grid { grid-template-columns: 1fr; align-items: center; }
         .logo-grid { grid-template-columns: repeat(3, 1fr); }
         .three-col { grid-template-columns: repeat(3, 1fr); }
         .two-col { grid-template-columns: repeat(2, 1fr); }
         .founder { grid-template-columns: 0.85fr 1.15fr; }
         .split { grid-template-columns: 1fr 1fr; }
+        .founder-media {
+          isolation: isolate;
+          padding: 1rem 1rem 0 0;
+        }
+        .founder-decoration {
+          display: block;
+          position: absolute;
+          z-index: -1;
+          right: -1rem;
+          top: -1rem;
+          width: 84%;
+          height: 84%;
+          border-radius: 18px;
+          border: 1px solid color-mix(in srgb, var(--dot) 65%, transparent);
+          background-image: radial-gradient(circle, color-mix(in srgb, var(--dot) 70%, transparent) 1.2px, transparent 1.2px);
+          background-size: 12px 12px;
+          opacity: 0.6;
+        }
       }
 
       @media (max-width: 759px) {
         .site-header-inner { flex-wrap: wrap; }
+        .hero-top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .partner-zone {
+          text-align: left;
+        }
+        .partner-logos {
+          flex-wrap: wrap;
+        }
+        .hero-content {
+          width: 100%;
+        }
+        .hero-background-media {
+          opacity: 0.22;
+          width: min(74vw, 420px);
+          height: min(72%, 420px);
+        }
       }
     </style>
   </head>
@@ -424,14 +808,30 @@
     <header class="site-header">
       <div class="container site-header-inner">
         <a href="#inicio" class="brand" aria-label="Página inicial da AC Consultoria">
-          <div class="logo-placeholder" aria-hidden="true">LOGO</div>
-          <span>AC Consultoria</span>
+          <div class="brand-ac-logo">
+            <div class="smart-image">
+              <img src="/images/logo-ac.png" alt="Logo AC Consultoria" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="smart-fallback brand-logo-fallback">[logo-ac.png]<small>76 x 76</small></div>
+            </div>
+          </div>
         </a>
         <div class="header-tools">
           <div class="theme-switcher" role="group" aria-label="Seletor de tema">
-            <button class="theme-option" type="button" data-theme-option="system">Sistema</button>
-            <button class="theme-option" type="button" data-theme-option="light">Claro</button>
-            <button class="theme-option" type="button" data-theme-option="dark">Escuro</button>
+            <button class="theme-option" type="button" data-theme-option="system" aria-label="Tema do sistema" title="Sistema">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-5v2h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2H6a2 2 0 0 1-2-2V5Zm2 0v9h12V5H6Z"/>
+              </svg>
+            </button>
+            <button class="theme-option" type="button" data-theme-option="light" aria-label="Tema claro" title="Claro">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1Zm0 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1Zm8-8a1 1 0 0 1 1 1 1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1ZM5 12a1 1 0 1 1 0 2H4a1 1 0 1 1 0-2h1Zm11.66-5.66a1 1 0 0 1 1.42 0l.7.7a1 1 0 1 1-1.42 1.42l-.7-.7a1 1 0 0 1 0-1.42Zm-10.6 10.6a1 1 0 0 1 1.42 0l.7.7a1 1 0 0 1-1.42 1.42l-.7-.7a1 1 0 0 1 0-1.42Zm12.02 1.42a1 1 0 0 1-1.42 0l-.7-.7a1 1 0 0 1 1.42-1.42l.7.7a1 1 0 0 1 0 1.42ZM8.18 8.18a1 1 0 0 1-1.42 0l-.7-.7A1 1 0 1 1 7.48 6l.7.7a1 1 0 0 1 0 1.42Z"/>
+              </svg>
+            </button>
+            <button class="theme-option" type="button" data-theme-option="dark" aria-label="Tema escuro" title="Escuro">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.5 3.1a1 1 0 0 1 .88 1.66A7 7 0 1 0 19.2 16.5a1 1 0 0 1 1.28 1.41A9 9 0 1 1 13.1 3.17a1 1 0 0 1 1.4-.07Z"/>
+              </svg>
+            </button>
           </div>
           <nav class="site-nav" aria-label="Navegação principal">
             <a href="#quem-somos">Quem Somos</a>
@@ -443,38 +843,54 @@
         </div>
       </div>
     </header>
-    <header class="hero" id="inicio">
+    <section class="hero" id="inicio" aria-label="Seção principal de autoridade">
       <div class="container hero-grid reveal">
-        <article>
-          <span class="tag">AC Consultoria & Instituto Phoenix</span>
-          <h1>Desenvolvemos pessoas e transformamos organizações.</h1>
-          <p>
-            Há mais de duas décadas "Preparando empresas & Organizações para os Novos Desafios"
-          </p>
-          <ul class="benefits">
-            <li><span class="check">✔</span><span>Temos soluções, recursos e ferramentas para o desenvolvimento humano, pessoal, profissional para as organizações e a vida.</span></li>
-            <li><span class="check">✔</span><span>Leve nossos treinamentos para sua empresa!</span></li>
-          </ul>
-          <div class="actions">
-            <a class="btn btn-primary" href="https://wa.me/5511947574348" target="_blank" rel="noopener noreferrer">Fale com um especialista</a>
+        <div class="hero-top">
+          <div class="brand-ac">
+            <div class="brand-ac-mark" aria-hidden="true">AC</div>
+            <div class="brand-ac-text">
+              <strong>ANTÔNIO CARLOS Consultoria &amp; Treinamentos</strong>
+              <small>Desde de o ano 2000</small>
+            </div>
           </div>
-        </article>
-        <aside class="panel">
-          <h2>Impacto com método e resultado</h2>
-          <p>
-            Programas orientados para transformação comportamental, fortalecimento da liderança e cultura de alta performance.
-          </p>
-          <div class="logo-grid" aria-label="Empresas atendidas pela consultoria">
-            <div class="logo">Logo Empresa 1</div>
-            <div class="logo">Logo Empresa 2</div>
-            <div class="logo">Logo Empresa 3</div>
-            <div class="logo">Logo Empresa 4</div>
-            <div class="logo">Logo Empresa 5</div>
-            <div class="logo">Logo Empresa 6</div>
+          <div class="partner-zone">
+            <div class="partner-label">PARCERIA</div>
+            <div class="partner-logos">
+              <div class="partner-logo" aria-label="Associação Comercial São Paulo">
+                <div class="smart-image">
+                  <img src="/images/logo-sp.png" alt="Logo Associação Comercial São Paulo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                  <div class="smart-fallback">[logo-sp.png]<small>220 x 88</small></div>
+                </div>
+              </div>
+              <div class="partner-logo" aria-label="Phoenix Institute">
+                <div class="smart-image">
+                  <img src="/images/logo-ip.png" alt="Logo Phoenix Institute" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                  <div class="smart-fallback">[logo-ip.png]<small>220 x 88</small></div>
+                </div>
+              </div>
+            </div>
           </div>
-        </aside>
+        </div>
+
+        <div class="hero-content">
+          <h1 class="hero-headline">Desde de o ano 2000 preparando pessoas e organizações para os novos desafios</h1>
+          <p class="hero-subheadline">Mais que uma consultoria de desenvolvimento humano e profissional, aqui você encontra um mundo de oportunidades e realizações!</p>
+          <div class="hero-quote-wrap">
+            <div class="quote-mark" aria-hidden="true">“</div>
+            <blockquote class="hero-quote">
+              Onde o autoconhecimento encontra estratégia, transforma pessoas, potencializa líderes de alta performance, fortalece organizações
+            </blockquote>
+            <cite class="quote-cite">AC</cite>
+          </div>
+        </div>
+        <div class="hero-background-media">
+          <div class="hero-photo smart-image">
+            <img src="/images/antonio-carlos.png" alt="Antônio Carlos falando ao microfone durante treinamento corporativo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+            <div class="smart-fallback hero-photo-fallback">[antonio-carlos.png]<small>1200 x 1600 (PNG sem fundo)</small></div>
+          </div>
+        </div>
       </div>
-    </header>
+    </section>
 
     <main>
       <section class="section reveal" aria-labelledby="autoridade">
@@ -482,12 +898,12 @@
           <h2 id="autoridade" style="text-align:center;">Mais de 20 anos impactando “pessoas e organizações”.</h2>
           <p style="text-align:center; max-width:800px; margin:0 auto;">Somos especialistas em desenvolver pessoas para alcançarem resultados reais e sustentáveis.</p>
           <p style="text-align:center; margin-top:1rem;">Algumas das empresas e profissionais que já confiaram em nosso trabalho.</p>
-          <div class="logo-grid" style="margin-top:1.2rem;">
-            <div class="logo">Parceiro A</div><div class="logo">Parceiro B</div><div class="logo">Parceiro C</div>
-            <div class="logo">Parceiro D</div><div class="logo">Parceiro E</div><div class="logo">Parceiro F</div>
-          </div>
-        </div>
-      </section>
+	          <div class="logo-grid" style="margin-top:1.2rem;">
+	            <div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-1.png">empresa-1.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-2.png">empresa-2.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-3.png">empresa-3.png</div></div>
+	            <div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-4.png">empresa-4.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-5.png">empresa-5.png</div></div><div class="logo"><div class="file-placeholder" role="img" aria-label="Imagem esperada empresa-6.png">empresa-6.png</div></div>
+	          </div>
+	        </div>
+	      </section>
 
       <section class="section reveal" aria-labelledby="quem-somos">
         <div class="container">
@@ -524,7 +940,13 @@
 
       <section class="section reveal" aria-labelledby="fundador">
         <div class="container founder">
-          <img class="founder-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80" alt="Antônio Carlos - Fundador e CEO" loading="lazy" />
+          <div class="founder-media">
+            <span class="founder-decoration" aria-hidden="true"></span>
+            <div class="founder-photo smart-image">
+              <img src="/images/antonio-carlos.jpg" alt="Antônio Carlos - Fundador e CEO" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="smart-fallback">[antonio-carlos.jpg]<small>900 x 1125</small></div>
+            </div>
+          </div>
           <article>
             <h2 id="fundador">Antônio Carlos - Fundador e CEO</h2>
             <p>Antônio Carlos é especialista em desenvolvimento humano e organizacional, com mais de duas décadas de atuação no mercado corporativo. Psicanalista clínico, treinador comportamental e consultor empresarial, dedica sua carreira a ajudar pessoas e empresas a alcançarem níveis mais elevados de consciência, performance e resultados. Ao longo de sua trajetória, já impactou centenas de profissionais e organizações através de treinamentos, consultorias e programas de desenvolvimento humano.</p>
@@ -649,6 +1071,7 @@
       const themeButtons = document.querySelectorAll('[data-theme-option]');
       const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      const siteHeader = document.querySelector('.site-header');
 
       const resolveTheme = (preference) => {
         if (preference === 'light' || preference === 'dark') {
@@ -658,7 +1081,7 @@
       };
 
       const updateThemeColor = (theme) => {
-        metaThemeColor.setAttribute('content', theme === 'dark' ? '#08162b' : '#06142d');
+        metaThemeColor.setAttribute('content', theme === 'dark' ? '#08162b' : '#f7fbff');
       };
 
       const setActiveThemeUI = (preference) => {
@@ -695,6 +1118,13 @@
         }
       });
 
+      const syncHeaderOnScroll = () => {
+        siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+      };
+
+      window.addEventListener('scroll', syncHeaderOnScroll, { passive: true });
+      syncHeaderOnScroll();
+
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -706,14 +1136,25 @@
       reveals.forEach((el) => observer.observe(el));
 
       const slider = document.getElementById('testimonialSlider');
+      const slides = slider.querySelectorAll('.slide');
       const dots = document.querySelectorAll('.dot');
+
+      const setSlide = (index) => {
+        slides.forEach((slide, slideIndex) => {
+          const isActive = slideIndex === index;
+          slide.classList.toggle('active', isActive);
+          slide.setAttribute('aria-hidden', String(!isActive));
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('active', dotIndex === index);
+        });
+      };
+
+      setSlide(0);
+
       dots.forEach((dot) => {
         dot.addEventListener('click', () => {
-          const index = Number(dot.dataset.slide);
-          slider.style.transform = `translateX(-${index * 100}%)`;
-          slider.style.transition = 'transform .55s ease';
-          dots.forEach((d) => d.classList.remove('active'));
-          dot.classList.add('active');
+          setSlide(Number(dot.dataset.slide));
         });
       });
     </script>
